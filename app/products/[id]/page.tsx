@@ -1,7 +1,8 @@
 import { Suspense } from 'react';
-import { getProductById } from '@/app/_lib/utils';
 import Image from 'next/image';
 import Navbar from '@/app/_components/navbar';
+
+import { getProductById } from '@/app/_lib/utils';
 
 export default async function Product({ params }: { params: { id: number } }) {
 	const { id } = await params;

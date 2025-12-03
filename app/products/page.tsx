@@ -11,7 +11,7 @@ export default async function Products() {
       <Navbar />
       <main className="p-4">
         <h2 className="text-xl mb-4">Welcome to infinite opportunities</h2>
-        <div className="bg-amber-200 text-black h-96">Slider</div>
+        <div className="bg-green-700 text-black h-96">Slider</div>
         <div className="grid grid-cols-5 gap-4 mt-4">
           {products.map((product: Product) => (
             <div key={product.id}>
