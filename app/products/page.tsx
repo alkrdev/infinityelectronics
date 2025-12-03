@@ -1,25 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-
-interface Product   {
-  id: number,
-  title: string,
-  price: number,
-  description: string,
-  category: string,
-  image: string,
-  rating: Rating
-}
-
-interface Rating {
-  rate: number,
-  count: number
-}
+import { Product } from "../_interfaces/product.interface";
 
 export default async function Home() {
   const data = await fetch('https://fakestoreapi.com/products')
   const products = await data.json()
-
 
   return (
     <div className="w-4/6 mx-auto">
