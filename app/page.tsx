@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Product } from "./_interfaces/product.interface";
+import { Product } from "../_interfaces/product.interface";
 
 export default async function Home() {
   const data = await fetch('https://fakestoreapi.com/products')
