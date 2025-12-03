@@ -6,7 +6,7 @@ import { getProductById } from '@/app/lib/utils';
 	export const dynamic = 'force-dynamic';
 
 export default async function Product({ params }: { params: { id: number } }) {
-	const { id } = await params;
+	const { id } = params;
 	const product = await getProductById(id);
 
 	return (
