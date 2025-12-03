@@ -1,4 +1,4 @@
-import { Product } from "@/_interfaces/product.interface";
+import { Product } from "@/app/interfaces/product.interface";
 
 export async function getProducts(): Promise<Product[]> {
     const url = process.env.API_URL || 'https://fakestoreapi.com';

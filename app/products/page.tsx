@@ -1,10 +1,12 @@
 import Image from "next/image";
-import { Product } from "../../_interfaces/product.interface";
-import Navbar from "../_components/navbar";
+import { Product } from "../interfaces/product.interface";
+import Navbar from "../components/navbar";
+import { getProducts } from "../lib/utils";
+
+export const dynamic = 'force-dynamic';
 
 export default async function Products() {
-  const data = await fetch('https://fakestoreapi.com/products')
-  const products = await data.json()
+  const products = await getProducts();
 
   return (
     <div className="w-4/6 mx-auto">

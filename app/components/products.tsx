@@ -1,11 +1,14 @@
 'use client';
-import { Product } from '@/_interfaces/product.interface';
+import { Product } from '@/app/interfaces/product.interface';
 import Image from 'next/image';
 import Link from 'next/link';
 import { use } from 'react';
 
+export const dynamic = 'force-dynamic';
+
 export default function Products({ products }: { products: Promise<Product[]> }) {
 	const allProducts = use(products);
+
 
 	return (
 		<div className='grid grid-cols-5 gap-4 mt-4'>

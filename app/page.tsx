@@ -1,9 +1,11 @@
 import { Suspense } from "react";
 
-import Products from "./_components/products";
-import Navbar from "./_components/navbar";
+import Products from "./components/products";
+import Navbar from "./components/navbar";
 
-import { getProducts } from "./_lib/utils";
+import { getProducts } from "./lib/utils";
+
+	export const dynamic = 'force-dynamic';
 
 export default function Home() { 
   const productsPromise = getProducts();
