@@ -1,7 +1,9 @@
 import Navbar from "../components/navbar";
-import { Suspense } from "react";
-import { getProducts } from "../lib/utils";
 import Products from "../components/products";
+import { getProducts } from "../lib/utils";
+import { Suspense } from "react";
+
+export const revalidate = 3600; // Revalidate every hour
 
 export default async function ProductsPage() {
   const products = await getProducts();

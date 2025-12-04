@@ -1,7 +1,7 @@
 import { Product } from "@/app/interfaces/product.interface";
 
 export async function getProducts(): Promise<Product[]> {   
-    const localUrl = process.env.LOCAL_URL
+    const localUrl = process.env.VERCEL_URL || process.env.LOCAL_URL
     const apiUrl = localUrl + '/api/products'
 
     let products: Product[] = [];
@@ -30,7 +30,7 @@ export async function getProducts(): Promise<Product[]> {
 }
 
 export async function getProductById(id: number): Promise<Product> {
-    const localUrl = process.env.LOCAL_URL
+    const localUrl = process.env.VERCEL_URL || process.env.LOCAL_URL
     const apiUrl = localUrl + '/api/products' + id
 
     let product: Product = {} as Product;
