@@ -15,8 +15,8 @@ export async function getProducts(): Promise<Product[]> {
         });
         
         if (!response.ok) {
-            // const text = await response.text();
-            // console.error(`API error ${response.status}:`, text);
+            const text = await response.text();
+            console.error(`API error ${response.status}:`, text);
             return products;
         }
         
@@ -44,8 +44,8 @@ export async function getProductById(id: number): Promise<Product> {
         })
 
         if (!response.ok) {
-            // const text = await response.text();
-            // console.error(`API error ${response.status}:`, text);
+            const text = await response.text();
+            console.error(`API error ${response.status}:`, text);
             return product;
         }
 
