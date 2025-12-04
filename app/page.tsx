@@ -3,6 +3,8 @@ import Navbar from "./components/navbar";
 import { getProducts } from "./lib/utils";
 import { Suspense } from "react";
 
+export const revalidate = 3600; // Revalidate every hour
+
 export default async function Home() { 
   const products = await getProducts();
 
