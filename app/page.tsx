@@ -9,7 +9,7 @@ export default function Home() {
       <main className="p-4">
         <h2 className="mb-4">Welcome to infinite opportunities</h2>
         <div className="bg-green-700 text-black h-96">Slider</div> 
-        <Products />    
+        <Products paginated />    
       </main>
     </div>
   );
