@@ -11,7 +11,7 @@ export default function ProductPage({ params }: { params: { id: number } }) {
 	const [error, setError] = useState(false);
 	
 	useEffect(() => {
-		fetch(process.env.API_URL + '/products/' + id)
+		fetch('https://fakestoreapi.com/products/' + id)
 		.then(res => {
 			if (!res.ok) throw new Error('Failed to fetch');
 			return res.json();

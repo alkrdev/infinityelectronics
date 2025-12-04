@@ -10,7 +10,7 @@ export default function Products() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch(process.env.API_URL + '/products')
+    fetch('https://fakestoreapi.com/products')
       .then(res => {
           if (!res.ok) throw new Error('Failed to fetch');
           return res.json();
