@@ -6,7 +6,7 @@ import { Suspense } from "react";
 export const revalidate = 3600; // Revalidate every hour
 
 export default async function Home() { 
-  const products = await getProducts();
+  const products = await fetch(process.env.LOCAL_URL + '/api/products').then(r => r.json());
 
   return (
     <div className="w-4/6 mx-auto">
