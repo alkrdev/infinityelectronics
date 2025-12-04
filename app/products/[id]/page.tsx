@@ -1,12 +1,38 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Navbar from '@/app/components/navbar';
-import { getProductById } from '@/app/lib/utils';
+import { Product } from '@/app/interfaces/product.interface';
 
-
-export default async function Product({ params }: { params: { id: number } }) {
+export default function ProductPage({ params }: { params: { id: number } }) {
 	const { id } = params;
-	const product = await getProductById(id);
+	const [product, setProduct] = useState<Product>({} as Product);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(false);
+	
+	useEffect(() => {
+		fetch(process.env.API_URL + '/products/' + id)
+		.then(res => {
+			if (!res.ok) throw new Error('Failed to fetch');
+			return res.json();
+		})
+		.then(data => {
+			setProduct(data);
+			setLoading(false);
+		})
+		.catch(err => {
+			console.error('Error fetching products:', err);
+			setError(true);
+			setLoading(false);
+		});
+		}, [id]);
+	
+	if (loading) {
+		return <div className='text-center mt-8'>Loading product...</div>;
+	}
+
+	if (error) {
+		return <div className='text-center mt-8 text-red-500'>Failed to load product</div>;
+	}
 
 	return (
 		<div className='w-4/6 mx-auto'>

@@ -2,10 +2,37 @@
 import { Product } from '@/app/interfaces/product.interface';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
-export const revalidate = 3600; // Revalidate every hour
+export default function Products() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-export default function Products({ products }: { products: Product[] }) {
+  useEffect(() => {
+    fetch(process.env.API_URL + '/products')
+      .then(res => {
+          if (!res.ok) throw new Error('Failed to fetch');
+          return res.json();
+      })
+      .then(data => {
+          setProducts(data);
+          setLoading(false);
+      })
+      .catch(err => {
+          console.error('Error fetching products:', err);
+          setError(true);
+          setLoading(false);
+      });
+	}, []);
+
+	if (loading) {
+		return <div className='text-center mt-8'>Loading products...</div>;
+	}
+
+	if (error) {
+		return <div className='text-center mt-8 text-red-500'>Failed to load products</div>;
+	}
 
 	return (       
 		<div className='grid grid-cols-5 gap-4 mt-4'>
