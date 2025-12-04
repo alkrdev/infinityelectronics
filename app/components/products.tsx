@@ -3,6 +3,8 @@ import { Product } from '@/app/interfaces/product.interface';
 import Image from 'next/image';
 import Link from 'next/link';
 
+export const revalidate = 3600; // Revalidate every hour
+
 export default function Products({ products }: { products: Product[] }) {
 
 	return (       
