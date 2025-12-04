@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Navbar from '@/app/components/navbar';
 import { getProductById } from '@/app/lib/utils';
 
-	export const dynamic = 'force-dynamic';
 
 export default async function Product({ params }: { params: { id: number } }) {
 	const { id } = params;

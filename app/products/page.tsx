@@ -3,8 +3,6 @@ import { Product } from "../interfaces/product.interface";
 import Navbar from "../components/navbar";
 import { getProducts } from "../lib/utils";
 
-export const dynamic = 'force-dynamic';
-
 export default async function Products() {
   const products = await getProducts();
 
