@@ -1,31 +1,12 @@
 'use client'
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Navbar from '@/app/components/navbar';
-import { Product } from '@/app/interfaces/product.interface';
+import { useProduct } from '@/app/hooks/useProduct';
+import { use } from 'react';
 
-export default function ProductPage({ params }: { params: { id: number } }) {
-	const { id } = params;
-	const [product, setProduct] = useState<Product>({} as Product);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(false);
-	
-	useEffect(() => {
-		fetch('https://fakestoreapi.com/products/' + id)
-		.then(res => {
-			if (!res.ok) throw new Error('Failed to fetch');
-			return res.json();
-		})
-		.then(data => {
-			setProduct(data);
-			setLoading(false);
-		})
-		.catch(err => {
-			console.error('Error fetching products:', err);
-			setError(true);
-			setLoading(false);
-		});
-		}, [id]);
+export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+	const { id } = use(params);
+	const [product, loading, error] = useProduct(id);
 	
 	if (loading) {
 		return <div className='text-center mt-8'>Loading product...</div>;
@@ -46,7 +27,7 @@ export default function ProductPage({ params }: { params: { id: number } }) {
 					<div className="flex flex-col gap-4 w-[450px] m-16">
 						<h2>{product.title}</h2>
 						<p>{product.description}</p>
-						<div className="bg-green-700 w-[200px] h-[60px] flex items-center justify-center text-2xl">Add to cart</div>
+						<div className="bg-green-700 w-[200px] h-[60px] flex items-center justify-center text-2xl hover:bg-green-600 hover:cursor-pointer">Add to cart</div>
 					</div>
 				</div>
 			</main>
